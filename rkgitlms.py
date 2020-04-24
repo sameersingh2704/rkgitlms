@@ -1,9 +1,11 @@
 from selenium import webdriver
 
 
+user_name=input("Enter your username")
+user_pass=input("Enter your password")
+class_section=input("Enter your class and section like:3D or 3C")
 req_url="http://rkgitlms.in/login/index.php"
-user_name="1703310170"
-user_pass="Sameer@123"
+
 driver=webdriver.Chrome()
 
 def login_page(req_url):
@@ -20,8 +22,16 @@ def authorization(user_name,user_pass):
 
 def cse_3d():
     driver.get("http://rkgitlms.in/mod/bigbluebuttonbn/view.php?id=231")
-    driver.find_element_by_id("join_button_input")
+    driver.find_element_by_id("join_button_input").click()
+def cse_3c():
+    driver.get("http://rkgitlms.in/mod/bigbluebuttonbn/view.php?id=230")
+    driver.find_element_by_id("join_button_input").click()
 
 login_page(req_url)
 authorization(user_name,user_pass)
-cse_3d()
+if(class_section=="3D"):
+    cse_3d()
+elif(class_section=="3C"):
+    cse_3c()
+else:
+    print("invalid class")
